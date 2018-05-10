@@ -21,6 +21,19 @@ class UniversalResourceIdentifierTest < ActiveSupport::TestCase
     assert uri.save
   end
 
+  test 'should not save non-unique long_url' do
+    uri_1 = UniversalResourceIdentifier.new
+    uri_1.short_url_id = 'tes123'
+    uri_1.long_url = "http://test-domain.com/some/path"
+    assert uri_1.save
+
+    uri_2 = UniversalResourceIdentifier.new
+    uri_2.short_url_id = 'tes456'
+    uri_2.long_url = "http://test-domain.com/some/path"
+    assert_not uri_2.valid?
+    assert_equal ["has already been taken"], uri_2.errors[:long_url]
+  end
+
   test 'should not save URI with invalid short_url_id' do
     uri = UniversalResourceIdentifier.new
     uri.long_url = "http://test-domain.com/some/path"
@@ -38,6 +51,28 @@ class UniversalResourceIdentifierTest < ActiveSupport::TestCase
 
     uri.short_url_id = 'tes123'
     assert uri.save
+  end
+
+  test 'should not save non-unique short_url_id' do
+    uri_1 = UniversalResourceIdentifier.new
+    uri_1.long_url = "http://test-domain.com/some/path/1"
+    uri_1.short_url_id = 'tes123'
+    assert uri_1.save
+
+    uri_2 = UniversalResourceIdentifier.new
+    uri_2.long_url = "http://test-domain.com/some/path/2"
+    uri_2.short_url_id = 'tes123'
+    assert_not uri_2.valid?
+    assert_equal ["has already been taken"], uri_2.errors[:short_url_id]
+
+    uri_3 = UniversalResourceIdentifier.new
+    uri_3.long_url = "http://test-domain.com/some/path/3"
+    uri_3.short_url_id = 'tes456'
+    assert uri_3.save
+
+    assert_raises ActiveRecord::RecordNotUnique do
+      uri_3.update_column(:short_url_id, 'tes123')
+    end
   end
 
 end
