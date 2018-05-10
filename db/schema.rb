@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_10_110905) do
+ActiveRecord::Schema.define(version: 2018_05_10_113854) do
 
   create_table "universal_resource_identifiers", force: :cascade do |t|
     t.text "long_url"
-    t.string "short_url"
+    t.string "short_url_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
