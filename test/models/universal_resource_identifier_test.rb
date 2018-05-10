@@ -38,8 +38,9 @@ class UniversalResourceIdentifierTest < ActiveSupport::TestCase
     uri = UniversalResourceIdentifier.new
     uri.long_url = "http://test-domain.com/some/path"
 
-    assert_not uri.valid?
-    assert_equal ["can't be blank", "is too short (minimum is 3 characters)"], uri.errors[:short_url_id]
+    assert uri.short_url_id.nil?
+    assert uri.valid?
+    assert_not uri.short_url_id.nil?
 
     uri.short_url_id = 'te'
     assert_not uri.valid?
