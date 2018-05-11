@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+git_source(:github) {|repo| "https://github.com/#{repo}.git"}
 
 ruby '2.4.2'
 
@@ -36,7 +36,17 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# To deduce lat and long and populate in hits
 gem 'geocoder'
+
+# To check for request.bot?
+gem 'voight_kampff'
+
+# jQuery
+gem 'jquery-rails'
+
+# Bootstrap 4 ruby gem for Ruby on Rails (Sprockets) and Compass.
+gem 'bootstrap', '~> 4.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
