@@ -3,9 +3,9 @@
 
     <%= form_with(model: UniversalResourceIdentifier.new, url: universal_resource_identifier_index_path) do |form| %>
         <div class='input-group mb-3'>
-          <%= form.text_field :long_url, class: 'form-control', placeholder: 'An URL want to shorten' %>
+          <%= form.text_field :long_url, class: 'form-control', placeholder: 'An URL want to shorten', autofocus: true %>
           <div class='input-group-append'>
-            <%= form.submit 'Short it!', class: 'btn btn-outline-secondary' %>
+            <%= form.submit 'Short it!', data: {disable_with: 'Shortening...'}, class: 'btn btn-outline-primary' %>
           </div>
         </div>
     <% end %>
