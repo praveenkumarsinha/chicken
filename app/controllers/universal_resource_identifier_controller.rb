@@ -6,9 +6,13 @@ class UniversalResourceIdentifierController < ApplicationController
 
   def visit
     if url = UniversalResourceIdentifier.find_by(short_url_id: params[:short_url_id])
+      user_agent = UserAgent.parse(request.user_agent)
       RecordHitJob.perform_later(url, {ip_address: request.remote_ip,
                                        bot_hit: request.bot?,
                                        http_referer: request.referer,
+                                       browser: user_agent.browser,
+                                       version: user_agent.version.to_s,
+                                       platform: user_agent.platform,
                                        request_dump: request.inspect})
       redirect_to(url.long_url)
     else

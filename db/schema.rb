@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_11_023141) do
+ActiveRecord::Schema.define(version: 2018_05_11_154245) do
 
   create_table "hits", force: :cascade do |t|
     t.integer "universal_resource_identifier_id"
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(version: 2018_05_11_023141) do
     t.text "request_dump"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "browser"
+    t.string "version"
+    t.string "platform"
     t.index ["universal_resource_identifier_id"], name: "index_hits_on_universal_resource_identifier_id"
   end
 
