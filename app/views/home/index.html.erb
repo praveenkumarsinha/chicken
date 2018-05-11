@@ -1,5 +1,5 @@
 <div class='row'>
-  <div class='col text-center'>
+  <div class='col-12 text-center'>
 
     <%= form_with(model: UniversalResourceIdentifier.new, url: universal_resource_identifier_index_path) do |form| %>
         <div class='input-group mb-3'>
@@ -12,3 +12,5 @@
 
   </div>
 </div>
+
+<%= render(partial: 'home/shortend_url') %>

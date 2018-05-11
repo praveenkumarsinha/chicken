@@ -1,0 +1,30 @@
+<div class='row justify-content-center shortend_url_container'>
+  <div class='col-md-10'>
+    <% if @url.persisted? %>
+        <div class="alert alert-info" role="alert">
+          <h4 class="alert-heading">Great!</h4>
+          <p>Here you go,<br/>Shorten-d URL for <strong>
+            <%= @url.long_url %></strong> is</p>
+          <hr>
+          <div class="form-group">
+            <input type="text"
+                   value="<%= visit_shorted_url(short_url_id: @url.short_url_id) %>"
+                   class="form-control text-center" id="exampleFormControlInput1" placeholder="name@example.com"
+                   readonly="readonly">
+          </div>
+        </div>
+    <% else %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          Failed to create shorten-d URL for <strong>"<%= @url.long_url %>"</strong> as <br/>
+          <div class="alert" role="alert">
+            <% @url.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    <% end if @url %>
+  </div>
+</div>
