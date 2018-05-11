@@ -15,5 +15,5 @@ first_one:
  short_url_id: 'A1b2C3'
 
 second_one:
- long_url: 'https://getbootstrap.com/docs/4.0/components/forms'
+ long_url: 'http://getbootstrap.com/docs/4.0/components/forms'
  short_url_id: 'A4b5C6'

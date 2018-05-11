@@ -10,9 +10,14 @@ class HomesTest < ApplicationSystemTestCase
 
   test "creating a shortend URL" do
     visit root_url
-    fill_in "universal_resource_identifier[long_url]", with: "https://getbootstrap.com/docs/4.0/components/forms"
+    fill_in "universal_resource_identifier[long_url]", with: "http://guides.rubyonrails.org/active_job_basics.html"
     click_button "Short it!"
     assert_current_path root_path
+  end
+
+  test "should get to original_url on visit by short_url_id" do
+    visit visit_shorted_url(short_url_id: universal_resource_identifiers(:second_one).short_url_id)
+    assert_current_path 'http://getbootstrap.com/docs/4.0/components/forms/'
   end
 
 end
