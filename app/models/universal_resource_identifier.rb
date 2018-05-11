@@ -7,6 +7,9 @@ class UniversalResourceIdentifier < ApplicationRecord
   validates :long_url, presence: true, uniqueness: {case_sensitive: false}, http_url: true
   validates :short_url_id, presence: true, uniqueness: true, length: {within: 3..6}
 
+  #==== Associations ==================================
+  has_many :hits, inverse_of: :universal_resource_identifier, dependent: :destroy
+
   #==== Callbacks =====================================
   before_validation :downcase_long_url
   before_validation :provision_short_url_id

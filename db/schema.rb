@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_10_170308) do
+ActiveRecord::Schema.define(version: 2018_05_11_023141) do
+
+  create_table "hits", force: :cascade do |t|
+    t.integer "universal_resource_identifier_id"
+    t.boolean "bot_hit"
+    t.string "ip_address"
+    t.string "http_referer"
+    t.float "latitude"
+    t.float "longitude"
+    t.text "request_dump"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["universal_resource_identifier_id"], name: "index_hits_on_universal_resource_identifier_id"
+  end
 
   create_table "universal_resource_identifiers", force: :cascade do |t|
     t.text "long_url"
