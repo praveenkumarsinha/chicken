@@ -27,4 +27,22 @@ class HitTest < ActiveSupport::TestCase
     assert hit.save
   end
 
+  test 'should auto populate latitude and longitude from ip_address during validation' do
+    hit = Hit.new
+    hit.universal_resource_identifier = universal_resource_identifiers(:first_one)
+    hit.bot_hit = false
+    hit.ip_address = '172.217.31.14' # Google's ip
+    hit.request_dump = 'some large request dump'
+
+    assert_nil hit.latitude
+    assert_nil hit.longitude
+
+    assert hit.valid?
+
+    assert_equal 37.4192, hit.latitude
+    assert_equal -122.0574, hit.longitude
+
+    assert hit.save
+  end
+
 end
