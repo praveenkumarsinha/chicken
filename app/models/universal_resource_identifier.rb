@@ -17,6 +17,25 @@ class UniversalResourceIdentifier < ApplicationRecord
   #==== Attributes accessors ==========================
   cattr_reader :sample_set
 
+  def hit!(request, in_thread: true)
+    proc = Proc.new do
+      hit = self.hits.new(ip_address: request.remote_ip,
+                          bot_hit: request.bot?,
+                          http_referer: request.referer,
+                          request_dump: request.inspect)
+
+      hit.save
+    end
+
+    if in_thread
+      Thread.new do
+        proc.call
+      end
+    else
+      proc.call
+    end
+  end
+
   private
 
   # Grabs a sample of alphanumeric characters and tries to find uniquness (via referencing db).

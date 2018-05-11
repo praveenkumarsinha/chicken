@@ -5,7 +5,8 @@ class UniversalResourceIdentifierController < ApplicationController
   end
 
   def visit
-    if  url = UniversalResourceIdentifier.find_by(short_url_id: params[:short_url_id])
+    if url = UniversalResourceIdentifier.find_by(short_url_id: params[:short_url_id])
+      url.hit!(request)
       redirect_to(url.long_url)
     else
       head :not_found
