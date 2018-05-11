@@ -1,2 +1,14 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class='row'>
+  <div class='col text-center'>
+
+    <%= form_with(model: UniversalResourceIdentifier.new, url: universal_resource_identifier_index_path) do |form| %>
+        <div class='input-group mb-3'>
+          <%= form.text_field :long_url, class: 'form-control', placeholder: 'An URL want to shorten' %>
+          <div class='input-group-append'>
+            <%= form.submit 'Short it!', class: 'btn btn-outline-secondary' %>
+          </div>
+        </div>
+    <% end %>
+
+  </div>
+</div>

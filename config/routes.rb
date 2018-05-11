@@ -3,4 +3,6 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  resources :universal_resource_identifier, only: [:create]
+
 end
