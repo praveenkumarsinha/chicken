@@ -9,3 +9,7 @@
 #
 # two: {}
 # column: value
+#
+first_one:
+ long_url: 'https://yahoo.com/some-thing'
+ short_url_id: 'A1b2C3'

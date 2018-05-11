@@ -11,4 +11,20 @@ class HitTest < ActiveSupport::TestCase
     assert_equal ["must exist"], hit.errors[:universal_resource_identifier]
   end
 
+  test 'should not save without values of bot_hit, ip_address and request_dump' do
+    hit = Hit.new
+    hit.universal_resource_identifier = universal_resource_identifiers(:first_one)
+    assert_not hit.valid?
+
+    assert_equal ["should be either true or false"], hit.errors[:bot_hit]
+    assert_equal ["can't be blank"], hit.errors[:ip_address]
+    assert_equal ["can't be blank"], hit.errors[:request_dump]
+
+    hit.bot_hit = false
+    hit.ip_address = '127.0.0.1'
+    hit.request_dump = 'some large request dump'
+
+    assert hit.save
+  end
+
 end
