@@ -1,24 +1,26 @@
-# README
+# CHICKEN app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Test URL shorten-r application. Takes a url and provides a short URL of it.
 
-Things you may want to cover:
+When shortened URL is visited it redirects to original provided url (and in background it also gathers some stats, which can be fetched via free REST API) .
 
-* Ruby version
 
-* System dependencies
+* Ruby version: **2.4.2**
 
-* Configuration
+* Rails version: **5.2.0**
 
-* Database creation
+* Database creation: **rake db:create**
 
-* Database initialization
+* Database initialization: **rake db:migrate**
 
-* How to run the test suite
+* How to run the test suite: **rake -t**
 
-* Services (job queues, cache servers, search engines, etc.)
+* How to run the app locally(in development): **rails s**
 
-* Deployment instructions
+* API request: 
 
-* ...
+
+    curl --request GET  --url http://some-dns.com/uri/<6 characters shortend id>
+    
+    curl --request GET  --url http://localhost:3000/uri/2TAa7F
+    
