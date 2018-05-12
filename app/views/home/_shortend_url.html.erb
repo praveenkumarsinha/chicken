@@ -7,7 +7,7 @@
             <%= @url.long_url %></strong> is</p>
           <hr>
           <div class="row justify-content-center">
-            <div class="col-6 form-group mb-0">
+            <div class="col-md-6 col-sm-12 form-group mb-0">
               <input type="text"
                      name="short_url_text"
                      value="<%= visit_shortened_url(short_url_id: @url.short_url_id) %>"
