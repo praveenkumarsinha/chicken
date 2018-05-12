@@ -5,5 +5,5 @@ Rails.application.routes.draw do
 
   resources :universal_resource_identifier, only: [:create]
 
-  get '/s/:short_url_id', to: 'universal_resource_identifier#visit', as: :visit_shorted
+  get '/s/:short_url_id', to: 'universal_resource_identifier#visit', as: :visit_shortened
 end

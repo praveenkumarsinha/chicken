@@ -16,7 +16,7 @@ class HomesTest < ApplicationSystemTestCase
   end
 
   test "should get to original_url on visit by short_url_id" do
-    visit visit_shorted_url(short_url_id: universal_resource_identifiers(:second_one).short_url_id)
+    visit visit_shortened_url(short_url_id: universal_resource_identifiers(:second_one).short_url_id)
     assert_current_path 'http://getbootstrap.com/docs/4.0/components/forms/'
   end
 
