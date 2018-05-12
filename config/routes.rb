@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :universal_resource_identifier, only: [:create]
+  resources :universal_resource_identifier, path: 'uri', only: [:show], defaults: {format: 'json'}, constraints: lambda {|req| req.format == :json}
 
-  get '/s/:short_url_id', to: 'universal_resource_identifier#visit', as: :visit_shortened
+  get '/s/:short_url_id', to: 'universal_resource_identifier#visit', as: :visit_shortened, constraints: {id: /[A-Za-z0-9]\d{6}/}
 end

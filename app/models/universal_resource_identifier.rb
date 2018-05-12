@@ -8,10 +8,10 @@ class UniversalResourceIdentifier < ApplicationRecord
   validates :short_url_id, presence: true, uniqueness: true, length: {within: 3..6}
 
   #==== Associations ==================================
-  has_many :hits, inverse_of: :universal_resource_identifier, dependent: :destroy
+  has_many :hits, -> {order('created_at desc')}, inverse_of: :universal_resource_identifier, dependent: :destroy
 
   #==== Callbacks =====================================
-  before_validation :downcase_long_url
+  before_validation :format_long_url
   before_validation :provision_short_url_id
 
   #==== Attributes accessors ==========================
@@ -30,11 +30,12 @@ class UniversalResourceIdentifier < ApplicationRecord
     return if self.short_url_id
 
     begin
-      self.short_url_id = self.class.sample_set.sample(5).join
+      self.short_url_id = self.class.sample_set.sample(6).join
     end while (UniversalResourceIdentifier.where(short_url_id: self.short_url_id).count > 0)
   end
 
-  def downcase_long_url
+  def format_long_url
+    self.long_url.try(:strip!)
     self.long_url.try(:downcase!)
   end
 

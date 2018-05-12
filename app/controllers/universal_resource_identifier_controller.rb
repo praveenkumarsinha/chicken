@@ -20,4 +20,11 @@ class UniversalResourceIdentifierController < ApplicationController
     end
   end
 
+  def show
+    if @uri = UniversalResourceIdentifier.find_by(short_url_id: params[:id])
+    else
+      head :not_found
+    end
+  end
+
 end
