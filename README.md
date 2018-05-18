@@ -20,7 +20,7 @@ When shortened URL is visited it redirects to original provided url (and in back
 * API request: 
 
 
-    curl --request GET  --url http://some-dns.com/uri/<6 characters shortend id>
+    curl --request GET  --url https://chick3n.herokuapp.com/uri/<6 characters shortend id>
     
-    curl --request GET  --url http://localhost:3000/uri/2TAa7F
+    curl --request GET  --url https://chick3n.herokuapp.com/uri/IyoXJ6
     
